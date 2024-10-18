@@ -1,4 +1,4 @@
-export PROJECT_ID="<enter project id>"
+export PROJECT_ID="qwiklabs-gcp-04-db96617dbd54"
 export POSTGRES_DB_USER_PASSWORD="minimalpassword"
 export POSTGRES_DB_MAIN_USER_PASSWORD="mainpassword"
 export POSTGRES_HOST="db"
