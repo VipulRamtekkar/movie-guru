@@ -31,13 +31,16 @@ export const IndexerFlow = defineFlow(
 			//- Look at the schema for the table to understand what fields are required.
 
       // FIX THIS: This is NOT a valid embedding. You DO NOT generate embeddings this way.
-      const embedding = ""
+            // Generate embedding
+      const embedding = await embed({
+        embedder: textEmbedding004,
+        content: filteredContent,
+      });
 			
       try {
-			  // FIX THIS: Partially implemented db query.
         await db`
-          INSERT INTO movies (embedding, tconst)
-          VALUES (${toSql(embedding)}, ${doc.tconst})
+          INSERT INTO movies (embedding, tconst, title, released, actors, director, plot, rating, runtime_mins, genres, poster)
+          VALUES (${toSql(embedding)}, ${doc.tconst},${doc.title},${doc.released},${doc.actors},${doc.director},${doc.plot},${doc.rating},${doc.runtimeMinutes},${doc.genres},${doc.poster})
 		      ON CONFLICT (tconst) DO NOTHING;
         `;
         return filteredContent; 
